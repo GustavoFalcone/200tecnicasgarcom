@@ -175,7 +175,10 @@ function WhatsAppIcon() {
 function FloatingActions() {
   return (
     <div className="floatingActions">
-      <a className="floatingPrice" href="#checkout">Ver planos</a>
+      <a className="floatingOffer" href="#checkout" aria-label="Ver planos a partir de R$10">
+        <span>A partir de R$10</span>
+        <strong>Ver Planos</strong>
+      </a>
       <a
         className="floatingWhatsapp"
         href="https://wa.me/5584994257596?text=Oi%2C%20queria%20tirar%20uma%20d%C3%BAvida%20sobre%20as%20%2B250%20atividades%20de%20reabilita%C3%A7%C3%A3o%21"
@@ -273,11 +276,6 @@ export default function App() {
         <section className="section bonusSection reveal">
           <p className="sectionKicker">Bônus do plano completo</p>
           <h2>Além das +250 atividades, você também recebe</h2>
-          <div className="bonusValueStack">
-            <span>Valor dos bônus</span>
-            <strong>R$ 87,00</strong>
-            <em>incluídos no Plano Completo</em>
-          </div>
           <div className="bonusStack">
             {bonuses.map((bonus, index) => (
               <article className="bonusCard" key={bonus.title}>
@@ -295,6 +293,11 @@ export default function App() {
                 </div>
               </article>
             ))}
+          </div>
+          <div className="bonusValueStack">
+            <span>Valor total dos bônus</span>
+            <strong>R$ 87,00</strong>
+            <em>incluídos no Plano Completo</em>
           </div>
         </section>
 
@@ -335,10 +338,6 @@ export default function App() {
               <span>De R$97,00</span>, por apenas:
             </div>
             <div className="completePrice">R$ 27,90</div>
-            <div className="guaranteeMiniSeal">
-              <strong>Garantia</strong>
-              <span>7 dias</span>
-            </div>
             <ul className="planList completeList">
               {completeItems.map((item) => (
                 <li key={item}>
@@ -352,12 +351,14 @@ export default function App() {
               alt="Compra segura e acesso digital"
               className="checkoutSecureImage"
             />
-            <CTA className="completeCta">Quero o Plano Completo</CTA>
+            <CTA className="completeCta pulseCta">Quero o Plano Completo</CTA>
           </article>
         </section>
 
         <section className="section guarantee reveal">
-          <div className="guaranteeSeal">7 dias</div>
+          <div className="guaranteeSeal">
+            <img src={asset('garantia-7-dias.png')} alt="Selo de garantia de 7 dias" loading="lazy" />
+          </div>
           <h2>Garantia simples de 7 dias</h2>
           <p>
             Você pode acessar o material e verificar se ele faz sentido para sua necessidade.
