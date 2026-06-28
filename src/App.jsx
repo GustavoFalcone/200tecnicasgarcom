@@ -25,22 +25,26 @@ const bonuses = [
   {
     title: 'Guia visual de uso das atividades',
     text: 'Um guia simples para entender como escolher, aplicar e organizar as atividades.',
-    image: 'bonus-guia-uso.png'
+    image: 'bonus-guia-uso.png',
+    value: 'R$ 27,00'
   },
   {
     title: 'Ficha de controle das atividades realizadas',
     text: 'Uma ficha prática para marcar data, atividade feita, dificuldade e observações.',
-    image: 'bonus-ficha-controle.png'
+    image: 'bonus-ficha-controle.png',
+    value: 'R$ 17,00'
   },
   {
     title: 'Guia visual de materiais simples',
     text: 'Objetos comuns que podem ser usados nas atividades físicas.',
-    image: 'bonus-materiais.png'
+    image: 'bonus-materiais.png',
+    value: 'R$ 23,00'
   },
   {
     title: 'Certificado de conclusão',
     text: 'Uma página final para preencher ao concluir o material.',
-    image: 'bonus-certificado.png'
+    image: 'bonus-certificado.png',
+    value: 'R$ 20,00'
   }
 ];
 
@@ -171,7 +175,7 @@ function WhatsAppIcon() {
 function FloatingActions() {
   return (
     <div className="floatingActions">
-      <a className="floatingPrice" href="#checkout">A partir de R$ 10</a>
+      <a className="floatingPrice" href="#checkout">Ver planos</a>
       <a
         className="floatingWhatsapp"
         href="https://wa.me/5584994257596?text=Oi%2C%20queria%20tirar%20uma%20d%C3%BAvida%20sobre%20as%20%2B250%20atividades%20de%20reabilita%C3%A7%C3%A3o%21"
@@ -229,7 +233,7 @@ export default function App() {
             alt="Mockup do material impresso com páginas de atividades"
             className="heroImage"
           />
-          <CTA>Quero acessar o material</CTA>
+          <CTA className="pulseCta">Quero acessar o material</CTA>
           <p className="accessNote">Acesso digital imediato</p>
         </section>
 
@@ -269,6 +273,11 @@ export default function App() {
         <section className="section bonusSection reveal">
           <p className="sectionKicker">Bônus do plano completo</p>
           <h2>Além das +250 atividades, você também recebe</h2>
+          <div className="bonusValueStack">
+            <span>Valor dos bônus</span>
+            <strong>R$ 87,00</strong>
+            <em>incluídos no Plano Completo</em>
+          </div>
           <div className="bonusStack">
             {bonuses.map((bonus, index) => (
               <article className="bonusCard" key={bonus.title}>
@@ -280,6 +289,10 @@ export default function App() {
                 <span className="bonusNumber">Bônus {String(index + 1).padStart(2, '0')}</span>
                 <h3>{bonus.title}</h3>
                 <p>{bonus.text}</p>
+                <div className="bonusPrice">
+                  <span>{bonus.value}</span>
+                  <strong>GRÁTIS</strong>
+                </div>
               </article>
             ))}
           </div>
@@ -322,6 +335,10 @@ export default function App() {
               <span>De R$97,00</span>, por apenas:
             </div>
             <div className="completePrice">R$ 27,90</div>
+            <div className="guaranteeMiniSeal">
+              <strong>Garantia</strong>
+              <span>7 dias</span>
+            </div>
             <ul className="planList completeList">
               {completeItems.map((item) => (
                 <li key={item}>
@@ -363,7 +380,7 @@ export default function App() {
         <section className="finalCta reveal">
           <h2>Tenha um material pronto para consultar, imprimir e aplicar</h2>
           <p>+250 atividades visuais e 4 bônus para apoiar a rotina com mais organização.</p>
-          <CTA>Quero acessar agora</CTA>
+          <CTA className="pulseCta">Quero acessar agora</CTA>
         </section>
       </main>
       <FloatingActions />
