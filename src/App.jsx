@@ -202,7 +202,9 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const elements = document.querySelectorAll('.reveal');
+    const elements = document.querySelectorAll(
+      '.reveal, .audienceCard, .bonusCard, .basicCard, .completeCard, .faqStack details'
+    );
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -224,7 +226,6 @@ export default function App() {
       <CountdownBar />
       <main className="mobileShell">
         <section className="hero reveal">
-          <p className="eyebrow">MATERIAL DIGITAL PRONTO PARA IMPRIMIR</p>
           <h1>
             <span>+250 atividades de reabilitação</span> prontas para imprimir e aplicar
           </h1>
