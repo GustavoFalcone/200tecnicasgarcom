@@ -1185,13 +1185,189 @@ details p {
   }
 }
 
-@media (min-width: 520px) {
+@media (min-width: 520px) and (max-width: 639px) {
   .mobileShell {
     width: 100%;
     max-width: 430px;
     margin: 18px 0;
     border-radius: 22px;
     box-shadow: 0 0 0 1px rgba(15, 17, 21, 0.05);
+  }
+}
+
+@media (min-width: 640px) and (max-width: 899px) {
+  #root {
+    display: block;
+  }
+
+  .mobileShell {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    border-radius: 0;
+    background: var(--white);
+    box-shadow: none;
+  }
+
+  .topCountdownInner {
+    max-width: 760px;
+    padding-inline: 22px;
+  }
+
+  .topCountdown strong {
+    font-size: 0.72rem;
+    letter-spacing: 0.07em;
+  }
+
+  .topCountdown span {
+    padding: 8px 12px;
+    font-size: 0.72rem;
+  }
+
+  .hero {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 58px 32px 64px;
+  }
+
+  .hero h1 {
+    max-width: 760px;
+    font-size: clamp(2.1rem, 5.6vw, 3rem);
+    line-height: 1.05;
+  }
+
+  .hero .subheadline {
+    max-width: 560px;
+    font-size: 1.08rem;
+  }
+
+  .heroImage {
+    max-width: 620px;
+    max-height: 430px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .heroImage img {
+    max-height: 430px;
+    object-fit: contain;
+  }
+
+  .hero .cta,
+  .finalCta .cta {
+    width: min(100%, 390px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section,
+  .priceSection,
+  .finalCta {
+    padding-left: max(28px, calc((100vw - 760px) / 2 + 28px));
+    padding-right: max(28px, calc((100vw - 760px) / 2 + 28px));
+  }
+
+  .section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  .section > h2,
+  .priceIntro h2,
+  .finalCta > h2,
+  .section > p,
+  .priceIntro p,
+  .finalCta p {
+    max-width: 660px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .audienceStack,
+  .bonusStack,
+  .faqStack {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    max-width: 760px;
+    margin: 24px auto 0;
+  }
+
+  .demoSection {
+    display: block;
+  }
+
+  .demoImage {
+    max-width: 650px;
+    margin: 22px auto 0;
+  }
+
+  .pillRow {
+    justify-content: center;
+  }
+
+  .bonusValueStack {
+    max-width: 420px;
+    margin: 24px auto 0;
+    text-align: center;
+  }
+
+  .priceSection {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+    padding-top: 70px;
+    padding-bottom: 76px;
+  }
+
+  .priceIntro {
+    padding-bottom: 0;
+  }
+
+  .basicCard,
+  .completeCard {
+    width: min(100%, 620px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .completeCard {
+    margin-top: 0;
+  }
+
+  .planProductImage {
+    max-width: 420px;
+  }
+
+  .guarantee {
+    max-width: none;
+    text-align: center;
+  }
+
+  .guaranteeSeal {
+    width: 150px;
+    height: 150px;
+  }
+
+  .finalCta {
+    padding-top: 72px;
+    padding-bottom: 128px;
+  }
+
+  .floatingActions {
+    left: 24px;
+    right: 24px;
+    width: auto;
+    transform: none;
+  }
+
+  .exitOverlay .modalPanel {
+    width: min(100%, 720px);
+  }
+
+  .exitPlans {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
   }
 }
 
@@ -1268,8 +1444,14 @@ details p {
   .heroImage {
     width: 100%;
     max-width: 620px;
+    max-height: min(46vh, 520px);
     margin: 0 auto 24px;
     border-radius: 22px;
+  }
+
+  .heroImage img {
+    max-height: min(46vh, 520px);
+    object-fit: contain;
   }
 
   .hero .cta {
@@ -1325,37 +1507,27 @@ details p {
   }
 
   .demoSection {
-    display: grid;
-    grid-template-columns: minmax(0, 0.82fr) minmax(420px, 1.18fr);
-    grid-template-areas:
-      "demoTitle demoImage"
-      "demoText demoImage"
-      "demoPills demoImage";
-    align-items: center;
-    column-gap: 56px;
+    display: block;
   }
 
   .demoSection h2 {
-    grid-area: demoTitle;
-    margin: 0;
-    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
   }
 
   .demoSection > p {
-    grid-area: demoText;
-    margin: 18px 0 0;
-    text-align: left;
+    margin: 18px auto 0;
+    text-align: center;
   }
 
   .demoSection .demoImage {
-    grid-area: demoImage;
-    margin: 0;
-    max-width: 600px;
-    justify-self: end;
+    margin: 28px auto 0;
+    max-width: 760px;
   }
 
   .pillRow {
-    grid-area: demoPills;
+    justify-content: center;
     margin-top: 24px;
   }
 
