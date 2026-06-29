@@ -820,6 +820,315 @@ details p {
   }
 }
 
+@media (min-width: 900px) {
+  html,
+  body {
+    background:
+      radial-gradient(circle at 8% 4%, rgba(47, 175, 155, 0.12), transparent 28%),
+      radial-gradient(circle at 92% 20%, rgba(47, 175, 155, 0.1), transparent 24%),
+      #eaf3f1;
+  }
+
+  #root {
+    display: block;
+  }
+
+  .mobileShell {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    border-radius: 0;
+    background: var(--white);
+    box-shadow: none;
+  }
+
+  .topCountdownInner {
+    max-width: 1180px;
+    padding-inline: 24px;
+  }
+
+  .topCountdown strong {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+  }
+
+  .topCountdown span {
+    padding: 8px 14px;
+    font-size: 0.78rem;
+  }
+
+  .hero {
+    min-height: calc(100vh - 52px);
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
+    grid-template-areas:
+      "eyebrow image"
+      "title image"
+      "text image"
+      "button image"
+      "note image";
+    align-items: center;
+    column-gap: clamp(42px, 6vw, 86px);
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 82px 32px 76px;
+    text-align: left;
+    background:
+      radial-gradient(circle at 90% 22%, rgba(47, 175, 155, 0.2), transparent 30%),
+      linear-gradient(180deg, #f2fbf8 0%, #ffffff 78%);
+  }
+
+  .hero .eyebrow {
+    grid-area: eyebrow;
+  }
+
+  .hero h1 {
+    grid-area: title;
+  }
+
+  .hero .subheadline {
+    grid-area: text;
+  }
+
+  .hero .heroImage {
+    grid-area: image;
+  }
+
+  .hero .cta {
+    grid-area: button;
+  }
+
+  .hero .accessNote {
+    grid-area: note;
+  }
+
+  .hero .eyebrow,
+  .hero .subheadline,
+  .hero h1 {
+    margin-inline: 0;
+    max-width: none;
+  }
+
+  .hero h1 {
+    font-size: clamp(3.25rem, 5.5vw, 5.15rem);
+    line-height: 0.96;
+    max-width: 9.5em;
+  }
+
+  .hero .subheadline {
+    max-width: 34rem;
+    margin-top: 20px;
+    margin-bottom: 24px;
+    font-size: 1.18rem;
+  }
+
+  .heroImage {
+    width: 100%;
+    max-width: 560px;
+    justify-self: end;
+    margin: 0;
+    border-radius: 22px;
+  }
+
+  .hero .cta {
+    width: min(100%, 360px);
+  }
+
+  .accessNote {
+    text-align: left;
+  }
+
+  .section,
+  .priceSection,
+  .finalCta {
+    padding-left: max(32px, calc((100vw - 1180px) / 2 + 32px));
+    padding-right: max(32px, calc((100vw - 1180px) / 2 + 32px));
+  }
+
+  .section {
+    padding-top: 76px;
+    padding-bottom: 76px;
+  }
+
+  .section > h2,
+  .priceIntro h2,
+  .finalCta > h2 {
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .section > p,
+  .demoSection > p,
+  .priceIntro p,
+  .finalCta p {
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .audienceStack {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    max-width: 1180px;
+    margin: 26px auto 0;
+  }
+
+  .audienceCard {
+    grid-template-columns: 34px 1fr;
+    align-content: start;
+    min-height: 158px;
+  }
+
+  .demoSection {
+    display: grid;
+    grid-template-columns: minmax(0, 0.82fr) minmax(420px, 1.18fr);
+    grid-template-areas:
+      "demoTitle demoImage"
+      "demoText demoImage"
+      "demoPills demoImage";
+    align-items: center;
+    column-gap: 56px;
+  }
+
+  .demoSection h2 {
+    grid-area: demoTitle;
+    margin: 0;
+    text-align: left;
+  }
+
+  .demoSection > p {
+    grid-area: demoText;
+    margin: 18px 0 0;
+    text-align: left;
+  }
+
+  .demoSection .demoImage {
+    grid-area: demoImage;
+    margin: 0;
+    max-width: 600px;
+    justify-self: end;
+  }
+
+  .pillRow {
+    grid-area: demoPills;
+    margin-top: 24px;
+  }
+
+  .bonusSection .sectionKicker,
+  .priceIntro .sectionKicker {
+    text-align: center;
+  }
+
+  .bonusStack {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    max-width: 1180px;
+    margin: 28px auto 0;
+  }
+
+  .bonusCard {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+
+  .bonusPrice {
+    margin-top: auto;
+  }
+
+  .bonusValueStack {
+    max-width: 420px;
+    margin: 24px auto 0;
+    text-align: center;
+  }
+
+  .priceSection {
+    display: grid;
+    grid-template-columns: minmax(320px, 0.9fr) minmax(380px, 1.1fr);
+    gap: 24px;
+    align-items: start;
+    padding-top: 86px;
+    padding-bottom: 90px;
+  }
+
+  .priceIntro {
+    grid-column: 1 / -1;
+    padding-bottom: 10px;
+  }
+
+  .basicCard,
+  .completeCard {
+    max-width: none;
+    margin: 0;
+  }
+
+  .completeCard {
+    transform: translateY(-10px);
+  }
+
+  .planProductImage {
+    max-width: 420px;
+  }
+
+  .guarantee {
+    display: grid;
+    grid-template-columns: 180px minmax(0, 620px);
+    justify-content: center;
+    align-items: center;
+    column-gap: 28px;
+    text-align: left;
+  }
+
+  .guaranteeSeal {
+    width: 156px;
+    height: 156px;
+    margin: 0;
+  }
+
+  .guarantee h2,
+  .guarantee p {
+    margin-left: 0;
+    margin-right: 0;
+    text-align: left;
+  }
+
+  .guarantee h2 {
+    grid-column: 2;
+  }
+
+  .guarantee p {
+    grid-column: 2;
+  }
+
+  .faqStack {
+    max-width: 860px;
+    margin: 26px auto 0;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  .finalCta {
+    padding-top: 86px;
+    padding-bottom: 126px;
+  }
+
+  .finalCta .cta {
+    width: min(100%, 390px);
+    margin: 0 auto;
+  }
+
+  .floatingActions {
+    left: auto;
+    right: 28px;
+    bottom: 24px;
+    width: auto;
+    transform: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .pulseCta {
