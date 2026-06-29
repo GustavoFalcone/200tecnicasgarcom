@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
 const asset = (name) => `/assets/${name}`;
+const completeOfferImage = 'https://i.postimg.cc/g0LgBSDg/Chat-GPT-Image-28-de-jun-de-2026-05-03-06.png';
+
+const CHECKOUTS = {
+  basicFull: 'COLOQUE_AQUI_O_CHECKOUT_DO_PLANO_BASICO_10',
+  completeFull: 'COLOQUE_AQUI_O_CHECKOUT_DO_PLANO_COMPLETO_2790',
+  basicDownsell: 'COLOQUE_AQUI_O_CHECKOUT_DO_PLANO_BASICO_590',
+  completeDownsell: 'COLOQUE_AQUI_O_CHECKOUT_DO_PLANO_COMPLETO_1790'
+};
 
 const audienceCards = [
   [
@@ -65,6 +73,16 @@ const completeItems = [
   'Guia visual de materiais simples',
   'Suporte VIP',
   'Acesso Vitalício',
+  'Pronto para imprimir'
+];
+
+const upsellItems = [
+  '+250 atividades de coordenação e escrita',
+  'Guia visual de uso das atividades',
+  'Ficha de controle das atividades realizadas',
+  'Guia visual de materiais simples',
+  'Suporte VIP',
+  'Acesso vitalício',
   'Pronto para imprimir'
 ];
 
@@ -145,9 +163,9 @@ function CountdownBar() {
   );
 }
 
-function CTA({ children = 'Quero acessar o material', className = '' }) {
+function CTA({ children = 'Quero acessar o material', className = '', href = '#checkout', onClick }) {
   return (
-    <a className={`cta ${className}`} href="#checkout">
+    <a className={`cta ${className}`} href={href} onClick={onClick}>
       {children}
     </a>
   );
@@ -192,7 +210,193 @@ function FloatingActions() {
   );
 }
 
+function ModalShell({ children, onClose, variant = '' }) {
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    document.body.classList.add('modalOpen');
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.classList.remove('modalOpen');
+    };
+  }, [onClose]);
+
+  return (
+    <div className={`modalOverlay ${variant}`} onMouseDown={onClose} role="presentation">
+      <div
+        className="modalPanel"
+        role="dialog"
+        aria-modal="true"
+        onMouseDown={(event) => event.stopPropagation()}
+      >
+        <button className="modalClose" type="button" onClick={onClose} aria-label="Fechar">
+          ×
+        </button>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function ModalBenefitList({ items, compact = false }) {
+  return (
+    <ul className={`modalBenefitList ${compact ? 'compact' : ''}`}>
+      {items.map((item) => (
+        <li key={item}>
+          <span>✓</span>
+          {item}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function BasicPlanUpsellModal({ onClose, onCheckout }) {
+  return (
+    <ModalShell onClose={onClose} variant="upsellOverlay">
+      <div className="upsellModal">
+        <p className="modalKicker">Oferta especial</p>
+        <h2>Libere o Plano Completo por apenas R$ 17,90</h2>
+        <p className="modalLead">
+          Por mais R$ 7,90, você recebe todos os bônus e o material completo para imprimir e
+          usar com mais facilidade.
+        </p>
+        <img
+          className="modalProductImage"
+          src={completeOfferImage}
+          alt="Plano completo com material e bônus"
+          loading="lazy"
+        />
+        <ModalBenefitList items={upsellItems} />
+        <div className="upsellPrice">R$ 17,90</div>
+        <p className="modalReinforce">Upgrade único antes de finalizar seu acesso.</p>
+        <a
+          className="modalPrimaryCta"
+          href={CHECKOUTS.completeDownsell}
+          onClick={() => onCheckout('completeDownsell')}
+        >
+          SIM! Quero liberar tudo por R$ 17,90 <span>→</span>
+        </a>
+        <a
+          className="modalSecondaryLink"
+          href={CHECKOUTS.basicFull}
+          onClick={() => onCheckout('basicFull')}
+        >
+          Não, obrigado. Quero apenas o Plano Básico por R$ 10,00
+        </a>
+      </div>
+    </ModalShell>
+  );
+}
+
+function ExitPlanList({ items }) {
+  return (
+    <ul className="exitPlanList">
+      {items.map(([type, text]) => (
+        <li className={type === 'no' ? 'notIncluded' : ''} key={text}>
+          <span>{type === 'no' ? '×' : '✓'}</span>
+          {text}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function ExitIntentModal({ onClose, onCheckout }) {
+  const completeExitItems = upsellItems.map((item) => ['yes', item]);
+
+  return (
+    <ModalShell onClose={onClose} variant="exitOverlay">
+      <div className="exitModal">
+        <div className="exitHeader">
+          <p className="modalKicker">Oferta especial</p>
+          <h2>Antes de sair, escolha com desconto</h2>
+          <p>Você pode acessar o material com um valor especial agora.</p>
+        </div>
+
+        <div className="exitPlans">
+          <article className="exitBasicPlan">
+            <h3>Plano Básico</h3>
+            <p>Para uma necessidade pontual</p>
+            <div className="exitOldPrice">De R$ 10,00</div>
+            <div className="exitPrice darkText">R$ 5,90</div>
+            <ExitPlanList items={basicItems} />
+            <a
+              className="exitBasicButton"
+              href={CHECKOUTS.basicDownsell}
+              onClick={() => onCheckout('basicDownsell')}
+            >
+              Quero o Básico por R$ 5,90
+            </a>
+          </article>
+
+          <article className="exitCompletePlan">
+            <div className="featuredBadge">Mais escolhido</div>
+            <h3>Plano Completo</h3>
+            <p>Material completo com bônus</p>
+            <img
+              className="exitProductImage"
+              src={completeOfferImage}
+              alt="Plano completo com material e bônus"
+              loading="lazy"
+            />
+            <div className="exitOldPrice light">De R$ 27,90</div>
+            <div className="exitPrice">R$ 17,90</div>
+            <small>Oferta especial antes de sair</small>
+            <ExitPlanList items={completeExitItems} />
+            <a
+              className="exitCompleteButton"
+              href={CHECKOUTS.completeDownsell}
+              onClick={() => onCheckout('completeDownsell')}
+            >
+              Quero o Completo por R$ 17,90
+            </a>
+          </article>
+        </div>
+
+        <button className="continueBrowsing" type="button" onClick={onClose}>
+          Continuar navegando
+        </button>
+      </div>
+    </ModalShell>
+  );
+}
+
 export default function App() {
+  const [isBasicUpsellOpen, setIsBasicUpsellOpen] = useState(false);
+  const [isExitIntentOpen, setIsExitIntentOpen] = useState(false);
+  const [hasClickedCheckout, setHasClickedCheckout] = useState(false);
+
+  const markCheckoutClick = () => {
+    setHasClickedCheckout(true);
+    window.sessionStorage.setItem('checkout-clicked', 'true');
+  };
+
+  const closeExitIntent = () => {
+    window.sessionStorage.setItem('exit-intent-seen', 'true');
+    setIsExitIntentOpen(false);
+  };
+
+  const openExitIntent = () => {
+    const alreadySeen = window.sessionStorage.getItem('exit-intent-seen') === 'true';
+    const checkoutClicked =
+      hasClickedCheckout || window.sessionStorage.getItem('checkout-clicked') === 'true';
+
+    if (alreadySeen || checkoutClicked || isBasicUpsellOpen || isExitIntentOpen) {
+      return false;
+    }
+
+    window.sessionStorage.setItem('exit-intent-seen', 'true');
+    setIsExitIntentOpen(true);
+    return true;
+  };
+
   useEffect(() => {
     if (window.location.hash) {
       window.setTimeout(() => {
@@ -220,6 +424,36 @@ export default function App() {
     elements.forEach((element) => observer.observe(element));
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    const handleMouseLeave = (event) => {
+      if (event.clientY <= 10) {
+        openExitIntent();
+      }
+    };
+
+    document.addEventListener('mouseleave', handleMouseLeave);
+    return () => document.removeEventListener('mouseleave', handleMouseLeave);
+  }, [hasClickedCheckout, isBasicUpsellOpen, isExitIntentOpen]);
+
+  useEffect(() => {
+    const stateKey = 'landing-exit-guard';
+
+    if (!window.history.state?.[stateKey]) {
+      window.history.pushState({ [stateKey]: true }, '', window.location.href);
+    }
+
+    const handlePopState = () => {
+      const didOpen = openExitIntent();
+
+      if (didOpen) {
+        window.history.pushState({ [stateKey]: true }, '', window.location.href);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [hasClickedCheckout, isBasicUpsellOpen, isExitIntentOpen]);
 
   return (
     <>
@@ -322,7 +556,13 @@ export default function App() {
                 </li>
               ))}
             </ul>
-            <a className="secondaryButton" href="#checkout">Quero o Plano Básico</a>
+            <button
+              className="secondaryButton"
+              type="button"
+              onClick={() => setIsBasicUpsellOpen(true)}
+            >
+              Quero o Plano Básico
+            </button>
           </article>
 
           <article className="completeCard">
@@ -352,7 +592,13 @@ export default function App() {
               alt="Compra segura e acesso digital"
               className="checkoutSecureImage"
             />
-            <CTA className="completeCta pulseCta">Quero o Plano Completo</CTA>
+            <CTA
+              className="completeCta pulseCta"
+              href={CHECKOUTS.completeFull}
+              onClick={markCheckoutClick}
+            >
+              Quero o Plano Completo
+            </CTA>
           </article>
         </section>
 
@@ -386,6 +632,15 @@ export default function App() {
         </section>
       </main>
       <FloatingActions />
+      {isBasicUpsellOpen && (
+        <BasicPlanUpsellModal
+          onClose={() => setIsBasicUpsellOpen(false)}
+          onCheckout={markCheckoutClick}
+        />
+      )}
+      {isExitIntentOpen && (
+        <ExitIntentModal onClose={closeExitIntent} onCheckout={markCheckoutClick} />
+      )}
     </>
   );
 }

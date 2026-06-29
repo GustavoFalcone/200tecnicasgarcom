@@ -619,6 +619,7 @@ figure {
 
 .secondaryButton {
   display: flex;
+  width: 100%;
   min-height: 52px;
   align-items: center;
   justify-content: center;
@@ -628,9 +629,11 @@ figure {
   border-radius: 14px;
   background: var(--white);
   color: var(--dark);
+  font: inherit;
   font-weight: 900;
   text-align: center;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .checkoutSecureImage {
@@ -777,6 +780,330 @@ details p {
 .floatingWhatsapp svg {
   width: 29px;
   height: 29px;
+}
+
+.modalOpen {
+  overflow: hidden;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: grid;
+  place-items: center;
+  padding: max(14px, env(safe-area-inset-top, 0px)) max(12px, env(safe-area-inset-right, 0px)) max(14px, env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px));
+  background:
+    radial-gradient(circle at 50% 0%, rgba(47, 175, 155, 0.22), transparent 34%),
+    rgba(5, 7, 9, 0.78);
+  backdrop-filter: blur(8px);
+  animation: modalFadeIn 180ms var(--ease-out);
+}
+
+.modalPanel {
+  position: relative;
+  width: min(100%, 410px);
+  max-height: min(92vh, 820px);
+  overflow-y: auto;
+  border: 1px solid rgba(47, 175, 155, 0.26);
+  border-radius: 22px;
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: var(--deep-shadow);
+  animation: modalSlideIn 260ms var(--ease-out);
+}
+
+.exitOverlay .modalPanel {
+  width: min(100%, 430px);
+}
+
+.modalClose {
+  position: sticky;
+  top: 10px;
+  left: calc(100% - 48px);
+  z-index: 2;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  margin: 10px 10px -44px auto;
+  border: 1px solid rgba(15, 17, 21, 0.08);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--muted);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.modalClose:focus-visible,
+.modalPrimaryCta:focus-visible,
+.modalSecondaryLink:focus-visible,
+.exitBasicButton:focus-visible,
+.exitCompleteButton:focus-visible,
+.continueBrowsing:focus-visible,
+.secondaryButton:focus-visible {
+  outline: 3px solid rgba(47, 175, 155, 0.42);
+  outline-offset: 3px;
+}
+
+.upsellModal,
+.exitModal {
+  padding: 46px 17px 18px;
+}
+
+.modalKicker {
+  width: fit-content;
+  margin: 0 auto 10px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--aqua-soft);
+  color: var(--aqua-dark);
+  font-size: 0.68rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.upsellModal h2,
+.exitHeader h2 {
+  font-size: clamp(1.62rem, 7vw, 2.05rem);
+  text-align: center;
+}
+
+.modalLead,
+.modalReinforce,
+.exitHeader p {
+  margin: 10px auto 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+  font-weight: 750;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.modalProductImage,
+.exitProductImage {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin: 16px auto;
+  object-fit: contain;
+  border-radius: 16px;
+}
+
+.modalBenefitList,
+.exitPlanList {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.modalBenefitList li,
+.exitPlanList li {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 9px;
+  align-items: flex-start;
+  font-size: 0.88rem;
+  font-weight: 850;
+}
+
+.modalBenefitList span,
+.exitPlanList span {
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--aqua);
+  color: var(--white);
+  font-size: 0.78rem;
+  font-weight: 950;
+}
+
+.exitPlanList .notIncluded {
+  color: #737c79;
+}
+
+.exitPlanList .notIncluded span {
+  background: #edf1ef;
+  color: #8b2d2d;
+}
+
+.upsellPrice {
+  margin: 16px 0 4px;
+  color: var(--aqua-dark);
+  font-size: 3.25rem;
+  line-height: 1;
+  font-weight: 950;
+  text-align: center;
+  letter-spacing: -0.03em;
+}
+
+.modalPrimaryCta,
+.exitCompleteButton {
+  display: flex;
+  min-height: 58px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 15px;
+  padding: 0 14px;
+  border: 2px solid var(--dark);
+  border-radius: 14px;
+  background: var(--aqua);
+  color: var(--white);
+  box-shadow: 0 7px 0 #050606, 0 16px 34px rgba(47, 175, 155, 0.24);
+  font-size: 0.88rem;
+  font-weight: 950;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.modalSecondaryLink,
+.continueBrowsing {
+  display: block;
+  width: 100%;
+  margin-top: 14px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 850;
+  text-align: center;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.exitHeader {
+  padding: 0 2px 16px;
+}
+
+.exitPlans {
+  display: grid;
+  gap: 16px;
+}
+
+.exitBasicPlan,
+.exitCompletePlan {
+  position: relative;
+  border-radius: 18px;
+}
+
+.exitBasicPlan {
+  padding: 18px 16px;
+  border: 1.5px solid #24282d;
+  background: var(--white);
+  box-shadow: 0 8px 0 rgba(0, 0, 0, 0.14);
+}
+
+.exitCompletePlan {
+  padding: 28px 16px 18px;
+  border: 2px solid var(--aqua);
+  background:
+    linear-gradient(180deg, rgba(47, 175, 155, 0.12), transparent 34%),
+    #11161a;
+  color: var(--white);
+  box-shadow: 0 10px 0 #050606, 0 22px 40px rgba(0, 0, 0, 0.2);
+}
+
+.exitBasicPlan h3,
+.exitCompletePlan h3 {
+  margin: 0 0 4px;
+  font-size: 1.42rem;
+}
+
+.exitBasicPlan p,
+.exitCompletePlan p,
+.exitCompletePlan small {
+  display: block;
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-weight: 750;
+}
+
+.exitCompletePlan p,
+.exitCompletePlan small {
+  color: rgba(255, 255, 255, 0.72);
+  text-align: center;
+}
+
+.exitCompletePlan h3 {
+  text-align: center;
+}
+
+.exitOldPrice {
+  margin-top: 8px;
+  color: #8a3333;
+  font-size: 0.94rem;
+  font-weight: 900;
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+}
+
+.exitOldPrice.light {
+  color: #ff6b6b;
+  text-align: center;
+}
+
+.exitPrice {
+  margin: 0 0 14px;
+  color: var(--white);
+  font-size: 3rem;
+  line-height: 1;
+  font-weight: 950;
+  text-align: center;
+  letter-spacing: -0.03em;
+}
+
+.exitPrice.darkText {
+  color: var(--ink);
+  text-align: left;
+}
+
+.exitBasicButton {
+  display: flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+  padding: 0 14px;
+  border: 1.5px solid var(--dark);
+  border-radius: 14px;
+  background: var(--white);
+  color: var(--dark);
+  font-weight: 950;
+  text-align: center;
+  text-decoration: none;
+}
+
+.exitCompletePlan .exitPlanList li {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .reveal,
@@ -1142,6 +1469,44 @@ details p {
     width: auto;
     transform: none;
     justify-content: space-between;
+  }
+
+  .modalOverlay {
+    padding: 28px;
+  }
+
+  .upsellOverlay .modalPanel {
+    width: min(100%, 520px);
+  }
+
+  .exitOverlay .modalPanel {
+    width: min(100%, 980px);
+  }
+
+  .upsellModal {
+    padding: 50px 34px 28px;
+  }
+
+  .exitModal {
+    padding: 48px 28px 24px;
+  }
+
+  .modalProductImage {
+    max-width: 360px;
+  }
+
+  .exitPlans {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: 22px;
+    align-items: start;
+  }
+
+  .exitCompletePlan {
+    transform: translateY(-8px);
+  }
+
+  .exitProductImage {
+    max-width: 360px;
   }
 }
 
