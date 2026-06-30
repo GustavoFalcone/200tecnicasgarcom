@@ -171,10 +171,16 @@ function CTA({ children = 'Quero acessar o material', className = '', href = '#c
   );
 }
 
-function ImageBlock({ src, alt, className = '' }) {
+function ImageBlock({ src, alt, className = '', loading = 'lazy', fetchPriority = 'auto' }) {
   return (
     <figure className={`imageBlock ${className}`}>
-      <img src={asset(src)} alt={alt} loading="lazy" />
+      <img
+        src={asset(src)}
+        alt={alt}
+        loading={loading}
+        decoding="async"
+        fetchPriority={fetchPriority}
+      />
     </figure>
   );
 }
@@ -456,19 +462,25 @@ function LandingPage() {
       <CountdownBar />
       <main className="mobileShell">
         <section className="hero reveal">
-          <h1>
-            <span>+250 atividades de reabilitação</span> prontas para imprimir e aplicar
-          </h1>
-          <p className="subheadline">
-            Um material visual, simples e organizado para usar no dia a dia com adultos e idosos.
-          </p>
-          <ImageBlock
-            src="hero-material.png"
-            alt="Mockup do material impresso com páginas de atividades"
-            className="heroImage"
-          />
-          <CTA className="pulseCta">Quero acessar o material</CTA>
-          <p className="accessNote">Acesso digital imediato</p>
+          <div className="heroCopy">
+            <h1>
+              <span>+250 atividades de reabilitação</span> prontas para imprimir e aplicar
+            </h1>
+            <p className="subheadline">
+              Um material visual, simples e organizado para usar no dia a dia com adultos e idosos.
+            </p>
+            <CTA className="pulseCta">Quero acessar o material</CTA>
+            <p className="accessNote">Acesso digital imediato</p>
+          </div>
+          <div className="heroMedia">
+            <ImageBlock
+              src="hero-material.png"
+              alt="Mockup do material impresso com páginas de atividades"
+              className="heroImage"
+              loading="eager"
+              fetchPriority="high"
+            />
+          </div>
         </section>
 
         <section className="section audienceSection reveal">
