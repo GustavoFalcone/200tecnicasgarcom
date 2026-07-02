@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const asset = (name) => `/assets/${name}`;
-const completeOfferImage = 'https://i.postimg.cc/g0LgBSDg/Chat-GPT-Image-28-de-jun-de-2026-05-03-06.png';
+const completeOfferImage = asset('plano-completo-novo.png');
 
 const CHECKOUTS = {
-  basicFull: 'COLOQUE_AQUI_O_CHECKOUT_DO_PLANO_BASICO_10',
-  completeFull: 'COLOQUE_AQUI_O_CHECKOUT_DO_PLANO_COMPLETO_2790',
-  basicDownsell: 'COLOQUE_AQUI_O_CHECKOUT_DO_PLANO_BASICO_590',
-  completeDownsell: 'COLOQUE_AQUI_O_CHECKOUT_DO_PLANO_COMPLETO_1790'
+  basicFull: 'https://zuckpay.com.br/checkout/250-atividades-de-reabilitacao-pos-avc-plano-basico',
+  completeFull: 'https://zuckpay.com.br/checkout/250-atividades-de-reabilitacao-pos-avc-plano-completo',
+  basicDownsell: 'https://zuckpay.com.br/checkout/250-atividades-de-reabilitacao-pos-avc-plano-basico-1',
+  completeDownsell: 'https://zuckpay.com.br/checkout/250-atividades-de-reabilitacao-pos-avc-plano-completo-1'
 };
 
 const audienceCards = [
@@ -33,25 +33,25 @@ const bonuses = [
   {
     title: 'Guia visual de uso das atividades',
     text: 'Um guia simples para entender como escolher, aplicar e organizar as atividades.',
-    image: 'bonus-guia-uso.png',
+    image: 'bonus-guia-uso-opt.jpg',
     value: 'R$ 27,00'
   },
   {
     title: 'Ficha de controle das atividades realizadas',
     text: 'Uma ficha prática para marcar data, atividade feita, dificuldade e observações.',
-    image: 'bonus-ficha-controle.png',
+    image: 'bonus-ficha-controle-opt.jpg',
     value: 'R$ 17,00'
   },
   {
     title: 'Guia visual de materiais simples',
     text: 'Objetos comuns que podem ser usados nas atividades físicas.',
-    image: 'bonus-materiais.png',
+    image: 'bonus-materiais-opt.jpg',
     value: 'R$ 23,00'
   },
   {
     title: 'Certificado de conclusão',
     text: 'Uma página final para preencher ao concluir o material.',
-    image: 'bonus-certificado.png',
+    image: 'bonus-certificado-opt.jpg',
     value: 'R$ 20,00'
   }
 ];
@@ -171,10 +171,10 @@ function CTA({ children = 'Quero acessar o material', className = '', href = '#c
   );
 }
 
-function ImageBlock({ src, alt, className = '' }) {
+function ImageBlock({ src, alt, className = '', loading = 'lazy', fetchPriority }) {
   return (
     <figure className={`imageBlock ${className}`}>
-      <img src={asset(src)} alt={alt} loading="lazy" />
+      <img src={asset(src)} alt={alt} loading={loading} decoding="async" fetchPriority={fetchPriority} />
     </figure>
   );
 }
@@ -190,10 +190,15 @@ function WhatsAppIcon() {
   );
 }
 
-function FloatingActions() {
+function FloatingActions({ onPlansClick }) {
   return (
     <div className="floatingActions">
-      <a className="floatingOffer" href="#checkout" aria-label="Ver planos a partir de R$10">
+      <a
+        className="floatingOffer"
+        href="#checkout"
+        aria-label="Ver planos a partir de R$10"
+        onClick={onPlansClick}
+      >
         <span>A partir de R$10</span>
         <strong>Ver Planos</strong>
       </a>
@@ -377,18 +382,42 @@ function LandingPage() {
   const isExitOfferPage = false;
   const [isBasicUpsellOpen, setIsBasicUpsellOpen] = useState(false);
   const [hasClickedCheckout, setHasClickedCheckout] = useState(false);
+  const suppressExitUntilRef = useRef(0);
 
   const markCheckoutClick = () => {
     setHasClickedCheckout(true);
     window.sessionStorage.setItem('checkout-clicked', 'true');
   };
 
+  const suppressExitIntent = (duration = 1800) => {
+    const until = Date.now() + duration;
+    suppressExitUntilRef.current = until;
+    window.sessionStorage.setItem('suppress-exit-until', String(until));
+  };
+
+  const handlePlansClick = (event) => {
+    event.preventDefault();
+    suppressExitIntent(2200);
+    window.history.replaceState(window.history.state, '', '#checkout');
+    document.getElementById('checkout')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   const redirectToExitOffer = () => {
     const alreadyRedirected = window.sessionStorage.getItem('exit-redirect-used') === 'true';
     const checkoutClicked =
       hasClickedCheckout || window.sessionStorage.getItem('checkout-clicked') === 'true';
+    const suppressedUntil = Math.max(
+      suppressExitUntilRef.current,
+      Number(window.sessionStorage.getItem('suppress-exit-until') || 0)
+    );
 
-    if (isExitOfferPage || alreadyRedirected || checkoutClicked || isBasicUpsellOpen) {
+    if (
+      isExitOfferPage ||
+      alreadyRedirected ||
+      checkoutClicked ||
+      isBasicUpsellOpen ||
+      Date.now() < suppressedUntil
+    ) {
       return false;
     }
 
@@ -463,11 +492,13 @@ function LandingPage() {
             Um material visual, simples e organizado para usar no dia a dia com adultos e idosos.
           </p>
           <ImageBlock
-            src="hero-material.png"
+            src="hero-material-opt.jpg"
             alt="Mockup do material impresso com páginas de atividades"
             className="heroImage"
+            loading="eager"
+            fetchPriority="high"
           />
-          <CTA className="pulseCta">Quero acessar o material</CTA>
+          <CTA className="pulseCta" onClick={handlePlansClick}>Quero acessar o material</CTA>
           <p className="accessNote">Acesso digital imediato</p>
         </section>
 
@@ -493,7 +524,7 @@ function LandingPage() {
             espaços de escrita e atividades bem separadas.
           </p>
           <ImageBlock
-            src="demo-pages.png"
+            src="demo-pages-opt.jpg"
             alt="Páginas internas demonstrativas do material"
             className="demoImage"
           />
@@ -528,7 +559,6 @@ function LandingPage() {
           <div className="bonusValueStack">
             <span>Valor total dos bônus</span>
             <strong>R$ 87,00</strong>
-            <em>incluídos no Plano Completo</em>
           </div>
         </section>
 
@@ -624,10 +654,10 @@ function LandingPage() {
         <section className="finalCta reveal">
           <h2>Tenha um material pronto para consultar, imprimir e aplicar</h2>
           <p>+250 atividades visuais e 4 bônus para apoiar a rotina com mais organização.</p>
-          <CTA className="pulseCta">Quero acessar agora</CTA>
+          <CTA className="pulseCta" onClick={handlePlansClick}>Quero acessar agora</CTA>
         </section>
       </main>
-      <FloatingActions />
+      <FloatingActions onPlansClick={handlePlansClick} />
       {isBasicUpsellOpen && (
         <BasicPlanUpsellModal
           onClose={() => setIsBasicUpsellOpen(false)}

@@ -113,6 +113,9 @@ img {
 }
 
 .hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: clamp(24px, 6vw, 34px) clamp(16px, 5vw, 22px) 38px;
   text-align: center;
   background:
@@ -373,6 +376,9 @@ figure {
   font-size: 1.72rem;
   line-height: 1;
   font-weight: 900;
+  text-decoration: line-through;
+  text-decoration-color: #8a3333;
+  text-decoration-thickness: 2px;
 }
 
 .bonusPrice {
@@ -999,7 +1005,12 @@ details p {
   padding: 18px 16px;
   border: 1.5px solid #24282d;
   background: var(--white);
+  color: var(--ink);
   box-shadow: 0 8px 0 rgba(0, 0, 0, 0.14);
+}
+
+.exitBasicPlan .exitPlanList li {
+  color: var(--ink);
 }
 
 .exitCompletePlan {
