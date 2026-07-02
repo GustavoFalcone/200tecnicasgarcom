@@ -171,10 +171,16 @@ function CTA({ children = 'Quero acessar o material', className = '', href = '#c
   );
 }
 
-function ImageBlock({ src, alt, className = '', loading = 'lazy', fetchPriority }) {
+function ImageBlock({ src, alt, className = '', loading = 'lazy', fetchPriority = 'auto' }) {
   return (
     <figure className={`imageBlock ${className}`}>
-      <img src={asset(src)} alt={alt} loading={loading} decoding="async" fetchPriority={fetchPriority} />
+      <img
+        src={asset(src)}
+        alt={alt}
+        loading={loading}
+        decoding="async"
+        fetchPriority={fetchPriority}
+      />
     </figure>
   );
 }
