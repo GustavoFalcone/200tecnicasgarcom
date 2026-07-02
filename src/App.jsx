@@ -319,7 +319,7 @@ function ExitPlanList({ items }) {
   );
 }
 
-function ExitOfferPage() {
+function ExitOfferPage({ onContinue }) {
   const completeExitItems = upsellItems.map((item) => ['yes', item]);
 
   const handleCheckoutClick = () => {
@@ -376,9 +376,15 @@ function ExitOfferPage() {
           </article>
         </section>
 
-        <a className="exitReturnLink" href="/">
-          Continuar navegando
-        </a>
+        {onContinue ? (
+          <button className="exitReturnLink" type="button" onClick={onContinue}>
+            Continuar navegando
+          </button>
+        ) : (
+          <a className="exitReturnLink" href="/">
+            Continuar navegando
+          </a>
+        )}
       </main>
     </>
   );
@@ -388,6 +394,7 @@ function LandingPage() {
   const isExitOfferPage = false;
   const [isBasicUpsellOpen, setIsBasicUpsellOpen] = useState(false);
   const [hasClickedCheckout, setHasClickedCheckout] = useState(false);
+  const [showExitOfferPage, setShowExitOfferPage] = useState(false);
   const suppressExitUntilRef = useRef(0);
 
   const markCheckoutClick = () => {
@@ -422,13 +429,15 @@ function LandingPage() {
       alreadyRedirected ||
       checkoutClicked ||
       isBasicUpsellOpen ||
+      showExitOfferPage ||
       Date.now() < suppressedUntil
     ) {
       return false;
     }
 
     window.sessionStorage.setItem('exit-redirect-used', 'true');
-    window.location.assign('/oferta-especial/');
+    setShowExitOfferPage(true);
+    window.scrollTo({ top: 0, behavior: 'instant' });
     return true;
   };
 
@@ -478,7 +487,7 @@ function LandingPage() {
 
     document.addEventListener('mouseleave', handleMouseLeave);
     return () => document.removeEventListener('mouseleave', handleMouseLeave);
-  }, [hasClickedCheckout, isBasicUpsellOpen]);
+  }, [hasClickedCheckout, isBasicUpsellOpen, showExitOfferPage]);
 
   useEffect(() => {
     const stateKey = 'landing-exit-guard';
@@ -493,7 +502,11 @@ function LandingPage() {
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
-  }, [hasClickedCheckout, isBasicUpsellOpen]);
+  }, [hasClickedCheckout, isBasicUpsellOpen, showExitOfferPage]);
+
+  if (showExitOfferPage) {
+    return <ExitOfferPage onContinue={() => setShowExitOfferPage(false)} />;
+  }
 
   return (
     <>
