@@ -16,7 +16,7 @@ const imageSizes = {
 
 const CHECKOUTS = {
   basicFull: 'https://www.zuckpay.com.br/checkout/250-atividades-de-reabilitacao-pos-avc-plano-basico',
-  completeFull: 'https://www.zuckpay.com.br/checkout/250-atividades-de-reabilitacao-pos-avc-plano-completo',
+  completeFull: 'https://zuckpay.com.br/checkout/250-atividades-de-reabilitacao-pos-avc-plano-completo',
   basicDownsell: 'https://www.zuckpay.com.br/checkout/250-atividades-de-reabilitacao-pos-avc-plano-basico-1',
   completeDownsell: 'https://www.zuckpay.com.br/checkout/250-atividades-de-reabilitacao-pos-avc-plano-completo-1'
 };
