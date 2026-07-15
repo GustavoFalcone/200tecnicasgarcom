@@ -81,6 +81,16 @@ h3 { line-height: 1.2; }
 @keyframes carouselForward { from { transform: translate3d(-33.333333%, 0, 0); } to { transform: translate3d(0, 0, 0); } }
 @keyframes carouselReverse { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-33.333333%, 0, 0); } }
 @media (max-width: 699px) { .deliverableViewport { transform: none; } }
+
+/* Safari/iPhone pode falhar ao compor transforms extensos em loops contínuos.
+   Aqui cada linha se move só dentro do conteúdo já repetido, sem quadro vazio. */
+@supports (-webkit-touch-callout: none) {
+  .deliverableTrack { position: relative; transform: none !important; will-change: left; -webkit-backface-visibility: visible; backface-visibility: visible; }
+  .trackForward { animation: iosCarouselForward 14s linear infinite !important; }
+  .trackReverse { animation: iosCarouselReverse 14s linear infinite !important; }
+  @keyframes iosCarouselForward { from { left: -110px; } to { left: 0; } }
+  @keyframes iosCarouselReverse { from { left: 0; } to { left: -110px; } }
+}
 .pillRow { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 760px; margin: 18px auto; }
 .pillRow span { padding: 8px 12px; border: 1px solid rgba(255, 255, 255, .20); border-radius: 99px; background: rgba(255, 255, 255, .08); font-size: .75rem; font-weight: 700; }
 
