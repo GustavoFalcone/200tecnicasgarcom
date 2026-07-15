@@ -84,13 +84,14 @@ h3 { line-height: 1.2; }
   .deliverableCarousel { margin-top: 22px; padding: 10px 0; }
   .carouselGlow { display: none; }
   .deliverableViewport { gap: 10px; transform: none; }
-  .carouselRow { min-height: min(49vw, 208px); }
+  .carouselRow { display: block; min-height: 0; height: min(49vw, 208px); }
   .deliverableLoopGroup { gap: 10px; padding-right: 10px; }
   .deliverablePreview { flex-basis: min(38vw, 160px); border-radius: 10px; box-shadow: 0 8px 16px rgba(0, 0, 0, .28); }
-  .trackForward { animation-duration: 22s; }
-  .trackReverse { margin-left: -12vw; animation-duration: 19s; }
+  .trackForward { animation: mobileCarouselForward 18s linear infinite !important; }
+  .trackReverse { margin-left: 0; animation: mobileCarouselReverse 16s linear infinite !important; }
 }
-@media (prefers-reduced-motion: reduce) { .deliverableTrack { animation: none; } }
+@keyframes mobileCarouselForward { from { transform: translate3d(-26%, 0, 0); } to { transform: translate3d(-2%, 0, 0); } }
+@keyframes mobileCarouselReverse { from { transform: translate3d(-3%, 0, 0); } to { transform: translate3d(-29%, 0, 0); } }
 .pillRow { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 760px; margin: 18px auto; }
 .pillRow span { padding: 8px 12px; border: 1px solid rgba(255, 255, 255, .20); border-radius: 99px; background: rgba(255, 255, 255, .08); font-size: .75rem; font-weight: 700; }
 
