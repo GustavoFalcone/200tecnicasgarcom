@@ -132,7 +132,7 @@ h3 { line-height: 1.2; }
 .planList .notIncluded .planIcon { color: var(--color-muted); text-decoration: none; }
 .planList .notIncluded .planItemText { text-decoration: line-through; text-decoration-thickness: 1.5px; }
 .planButton { padding: 10px; }
-.basicButton { border: 1px solid var(--color-charcoal); background: var(--color-charcoal); color: var(--color-white); }
+.basicButton { width: 100%; margin-inline: auto; border: 1px solid var(--color-charcoal); background: var(--color-charcoal); color: var(--color-white); }
 .basicButton:hover { background: rgba(23, 23, 23, .88); }
 .completeButton { background: var(--color-gold); color: var(--color-charcoal); box-shadow: 0 7px 16px rgba(23, 23, 23, .35); }
 .completeButton:hover { background: rgba(198, 161, 91, .84); }
@@ -147,6 +147,8 @@ h3 { line-height: 1.2; }
 .upgradeEyebrow { margin: 0 0 8px; color: var(--color-gold); font-size: .65rem; font-weight: 800; letter-spacing: .14em; }
 .upgradeModal h2 { max-width: 340px; margin: 0 auto 10px; font-size: clamp(1.55rem, 7vw, 2.15rem); }
 .upgradeModal > p:not(.upgradeEyebrow) { margin: 0 auto 10px; color: var(--color-muted); font-size: .82rem; }
+.upgradeModal .upgradeValueCopy { max-width: 350px; margin-bottom: 14px; color: var(--color-charcoal); font-size: .79rem; line-height: 1.48; }
+.upgradeValueCopy b { color: var(--color-gold); }
 .upgradeModal img { display: block; width: min(100%, 300px); max-height: 210px; margin: 8px auto 10px; object-fit: contain; }
 .upgradeModal ul { display: grid; gap: 7px; margin: 12px auto 16px; padding: 0; list-style: none; text-align: left; }
 .upgradeModal li { font-size: .77rem; font-weight: 700; }

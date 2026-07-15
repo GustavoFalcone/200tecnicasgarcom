@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-// TODO: configure os links oficiais antes da publicação.
-const BASIC_CHECKOUT_URL = '';
-const COMPLETE_CHECKOUT_URL = '';
+const BASIC_CHECKOUT_URL = 'https://zuckpay.com.br/checkout/200-tecnicas-para-servir-como-um-garcom-profissional-plano-basico';
+const COMPLETE_CHECKOUT_URL = 'https://zuckpay.com.br/checkout/200-tecnicas-para-servir-como-um-garcom-profissional-plano-completo';
+const UPGRADE_CHECKOUT_URL = 'https://zuckpay.com.br/checkout/200-tecnicas-para-servir-como-um-garcom-profissional-plano-completo-1';
 
 const audienceCards = [
   ['Garçons de restaurantes', 'Para quem quer aprimorar o serviço à mesa e trabalhar com mais fluidez.'],
@@ -104,10 +104,11 @@ function UpgradeModal({ onClose }) {
     <section className="upgradeModal" role="dialog" aria-modal="true" aria-labelledby="upgrade-title" onMouseDown={(event) => event.stopPropagation()}>
       <button className="upgradeClose" type="button" onClick={onClose} aria-label="Fechar oferta">×</button>
       <p className="upgradeEyebrow">OFERTA ESPECIAL</p><h2 id="upgrade-title">Leve o Plano Completo por R$ 17,90</h2>
-      <p>Mais técnicas, roteiros, bônus e certificado para aplicar no próximo turno.</p>
+      <p>Por apenas mais R$ 7,90, você desbloqueia tudo o que deixa o serviço mais organizado, elegante e seguro.</p>
       <img src="/assets/plano-completo-oferta.png" alt="Plano Completo com técnicas e materiais complementares" />
-      <ul><li>+200 técnicas visuais</li><li>30 roteiros práticos</li><li>4 bônus incluídos</li></ul>
-      <strong>R$ 17,90</strong><a className="upgradeButton" href={COMPLETE_CHECKOUT_URL || '#'} onClick={(event) => checkout(event, COMPLETE_CHECKOUT_URL, 'Plano Completo')}>QUERO O PLANO COMPLETO</a>
+      <p className="upgradeValueCopy">Você leva os 4 bônus que, juntos, normalmente custam <b>R$ 87,00</b> — além das 200 técnicas e dos roteiros práticos.</p>
+      <ul><li>+200 técnicas visuais</li><li>30 roteiros práticos</li><li>4 bônus incluídos</li><li>Certificado de conclusão</li></ul>
+      <strong>R$ 17,90</strong><a className="upgradeButton" href={UPGRADE_CHECKOUT_URL} onClick={(event) => checkout(event, UPGRADE_CHECKOUT_URL, 'Plano Completo com oferta')}>QUERO O PLANO COMPLETO</a>
       <a className="upgradeDecline" href={BASIC_CHECKOUT_URL || '#'} onClick={(event) => checkout(event, BASIC_CHECKOUT_URL, 'Plano Básico')}>Continuar apenas com o Plano Básico</a>
     </section>
   </div>;
