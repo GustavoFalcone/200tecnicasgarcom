@@ -70,20 +70,22 @@ h3 { line-height: 1.2; }
 .demoSection .sectionLead { max-width: 620px; margin: 0 auto; color: rgba(255, 255, 255, .72); }
 .deliverableCarousel { position: relative; max-width: 1060px; margin: 30px auto 0; padding: 18px 0; overflow: hidden; isolation: isolate; contain: layout paint; }
 .carouselGlow { position: absolute; z-index: -1; inset: 14% 18%; border-radius: 50%; background: rgba(198, 161, 91, .20); filter: blur(56px); }
-.deliverableViewport { display: grid; gap: 16px; width: 100%; overflow: hidden; transform: rotate(-1.5deg) scale(1.04); transform-origin: center; }
-.deliverableTrack { display: flex; width: max-content; gap: 16px; will-change: transform; backface-visibility: hidden; }
+.deliverableViewport { display: grid; gap: 16px; width: 100%; transform: rotate(-1.5deg) scale(1.04); transform-origin: center; }
+.carouselRow { width: 100%; min-height: clamp(166px, 29vw, 284px); overflow: hidden; }
+.deliverableTrack { display: flex; width: max-content; gap: 0; will-change: transform; backface-visibility: hidden; }
+.deliverableLoopGroup { display: flex; flex: 0 0 auto; gap: 16px; padding-right: 16px; }
 .deliverablePreview { flex: 0 0 clamp(128px, 23vw, 220px); aspect-ratio: 4 / 5.15; margin: 0; overflow: hidden; border: 1px solid rgba(198, 161, 91, .44); border-radius: 13px; background: #f4f0e8; box-shadow: 0 14px 26px rgba(0, 0, 0, .34); }
 .deliverablePreview img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .trackForward { animation: carouselForward 28s linear infinite; }
 .trackReverse { margin-left: clamp(-120px, -17vw, -260px); animation: carouselReverse 24s linear infinite; }
-.deliverableCarousel:hover .deliverableTrack { animation-play-state: paused; }
 @keyframes carouselForward { from { transform: translate3d(-50%, 0, 0); } to { transform: translate3d(0, 0, 0); } }
 @keyframes carouselReverse { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-50%, 0, 0); } }
 @media (max-width: 699px) {
   .deliverableCarousel { margin-top: 22px; padding: 10px 0; }
   .carouselGlow { display: none; }
   .deliverableViewport { gap: 10px; transform: none; }
-  .deliverableTrack { gap: 10px; }
+  .carouselRow { min-height: min(49vw, 208px); }
+  .deliverableLoopGroup { gap: 10px; padding-right: 10px; }
   .deliverablePreview { flex-basis: min(38vw, 160px); border-radius: 10px; box-shadow: 0 8px 16px rgba(0, 0, 0, .28); }
   .trackForward { animation-duration: 22s; }
   .trackReverse { margin-left: -12vw; animation-duration: 19s; }

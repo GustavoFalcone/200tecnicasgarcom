@@ -81,14 +81,12 @@ function ImagePlaceholder({ label, hint, ratio = '4/3', file, className = '' }) 
 }
 
 function DeliverableCarousel() {
-  const topRow = [...deliverablePages.slice(0, 5), ...deliverablePages.slice(0, 5)];
-  const bottomRow = [...deliverablePages.slice(5), ...deliverablePages.slice(5)];
-  const renderRow = (items, className) => <div className={`deliverableTrack ${className}`} aria-hidden="true">
-    {items.map((src, index) => <figure className="deliverablePreview" key={`${className}-${index}`}><img src={src} alt="" loading="eager" decoding="async" fetchPriority={index === 0 ? 'high' : 'low'} /></figure>)}
-  </div>;
+  const renderRow = (items, className) => <div className="carouselRow" aria-hidden="true"><div className={`deliverableTrack ${className}`}>
+    {[0, 1].map((loop) => <div className="deliverableLoopGroup" key={`${className}-group-${loop}`}>{items.map((src, index) => <figure className="deliverablePreview" key={`${className}-${loop}-${index}`}><img src={src} alt="" loading="eager" decoding="async" fetchPriority={index === 0 && loop === 0 ? 'high' : 'low'} /></figure>)}</div>)}
+  </div></div>;
   return <div className="deliverableCarousel" role="group" aria-label="Prévia de páginas internas do material">
     <div className="carouselGlow" aria-hidden="true" />
-    <div className="deliverableViewport">{renderRow(topRow, 'trackForward')}{renderRow(bottomRow, 'trackReverse')}</div>
+    <div className="deliverableViewport">{renderRow(deliverablePages.slice(0, 5), 'trackForward')}{renderRow(deliverablePages.slice(5), 'trackReverse')}</div>
   </div>;
 }
 
