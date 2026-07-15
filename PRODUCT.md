@@ -1,33 +1,25 @@
-# Product
+# Produto
 
-## Register
+## Oferta
 
-brand
+**+200 Técnicas para Servir como um Garçom Profissional** — material digital, visual e de consulta rápida, acompanhado de 30 roteiros práticos de serviço.
 
-## Users
+## Público
 
-Familiares, cuidadores, profissionais e pessoas que precisam de um material visual simples para apoiar adultos e idosos em rotina pós-AVC.
+Garçons que já trabalham em restaurantes, bares, hotéis, buffets e eventos e desejam aprimorar agilidade, elegância, segurança e presença no atendimento.
 
-## Product Purpose
+## Personalidade
 
-Vender uma landing page mobile-first para um material digital pronto para imprimir, com atividades de coordenação, escrita, atenção visual e exercícios físicos simples com objetos comuns.
+Direta, refinada, prática, confiável e acessível. A identidade combina azul profundo, marfim e dourado contido, com linguagem de aprimoramento e hospitalidade.
 
-## Brand Personality
+## Princípios
 
-Clara, prática e cuidadosa.
+- Prioridade para leitura e conversão em celulares.
+- Conteúdo curto, visual e demonstrativo.
+- Plano Completo como escolha principal, sem ocultar o Plano Básico.
+- Segurança, higiene e regras de cada estabelecimento acima de exibicionismo.
+- Sem promessas exageradas e sem links de compra enquanto os destinos oficiais não forem configurados.
 
-## Anti-references
+## Configuração pendente
 
-Não parecer curso, promessa médica, método milagroso, página infantil, hospitalar pesada ou landing sensacionalista.
-
-## Design Principles
-
-- Mostrar o material de forma visual e direta.
-- Priorizar leitura confortável em celulares.
-- Manter a oferta simples, sem prometer cura ou resultado clínico.
-- Destacar o plano completo sem deixar a página poluída.
-- Preservar a identidade verde-água e branca já aprovada.
-
-## Accessibility & Inclusion
-
-Usar contraste adequado, textos legíveis, áreas de toque grandes, movimento reduzido quando solicitado pelo sistema e layout fluido para iOS e Android.
+Preencher `BASIC_CHECKOUT_URL`, `COMPLETE_CHECKOUT_URL` e `WHATSAPP_URL` no início de `src/App.jsx`.
