@@ -84,7 +84,7 @@ function DeliverableCarousel() {
   const topRow = [...deliverablePages.slice(0, 5), ...deliverablePages.slice(0, 5)];
   const bottomRow = [...deliverablePages.slice(5), ...deliverablePages.slice(5)];
   const renderRow = (items, className) => <div className={`deliverableTrack ${className}`} aria-hidden="true">
-    {items.map((src, index) => <figure className="deliverablePreview" key={`${className}-${index}`}><img src={src} alt="" loading="lazy" /></figure>)}
+    {items.map((src, index) => <figure className="deliverablePreview" key={`${className}-${index}`}><img src={src} alt="" loading="eager" decoding="async" fetchPriority={index === 0 ? 'high' : 'low'} /></figure>)}
   </div>;
   return <div className="deliverableCarousel" role="group" aria-label="Prévia de páginas internas do material">
     <div className="carouselGlow" aria-hidden="true" />
@@ -93,7 +93,6 @@ function DeliverableCarousel() {
 }
 
 function scrollToPlans(event) { event?.preventDefault(); document.getElementById('checkout')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-function checkout(event, url, plan) { if (!url) { event.preventDefault(); console.warn(`TODO: configure o checkout do ${plan}.`); } }
 
 function CTA({ children, className = '' }) { return <a href="#checkout" className={`cta ${className}`} onClick={scrollToPlans}>{children}</a>; }
 
@@ -108,8 +107,8 @@ function UpgradeModal({ onClose }) {
       <img src="/assets/plano-completo-oferta.png" alt="Plano Completo com técnicas e materiais complementares" />
       <p className="upgradeValueCopy">Você leva os 4 bônus que, juntos, normalmente custam <b>R$ 87,00</b> — além das 200 técnicas e dos roteiros práticos.</p>
       <ul><li>+200 técnicas visuais</li><li>30 roteiros práticos</li><li>4 bônus incluídos</li><li>Certificado de conclusão</li></ul>
-      <strong>R$ 17,90</strong><a className="upgradeButton" href={UPGRADE_CHECKOUT_URL} onClick={(event) => checkout(event, UPGRADE_CHECKOUT_URL, 'Plano Completo com oferta')}>QUERO O PLANO COMPLETO</a>
-      <a className="upgradeDecline" href={BASIC_CHECKOUT_URL || '#'} onClick={(event) => checkout(event, BASIC_CHECKOUT_URL, 'Plano Básico')}>Continuar apenas com o Plano Básico</a>
+      <strong>R$ 17,90</strong><a className="upgradeButton" href={UPGRADE_CHECKOUT_URL}>QUERO O PLANO COMPLETO</a>
+      <a className="upgradeDecline" href={BASIC_CHECKOUT_URL}>Continuar apenas com o Plano Básico</a>
     </section>
   </div>;
 }
@@ -138,7 +137,7 @@ export default function App() {
 
       <section className="priceSection" id="checkout"><div className="priceIntro reveal"><p className="eyebrow">ACESSO DIGITAL IMEDIATO</p><h2>Escolha seu acesso</h2><p>Comece pelo material principal ou leve o aprimoramento completo com todos os bônus.</p></div>
         <article className="basicCard reveal"><p className="planEyebrow">PAGAMENTO ÚNICO</p><h3>Plano Básico</h3><p>Para acessar apenas o material principal</p><div className="basicPrice">R$ 10,00</div><PlanList items={basicItems} basic /><button className="planButton basicButton" type="button" onClick={() => setShowUpgrade(true)}>QUERO APENAS O PLANO BÁSICO</button></article>
-        <article className="completeCard reveal"><span className="featuredBadge">MAIS ESCOLHIDO</span><p className="planEyebrow">PAGAMENTO ÚNICO</p><h3>Plano Completo</h3><p>Para ter o aprimoramento completo com todos os bônus</p><ImagePlaceholder className="productImage" label="IMAGEM DO PLANO COMPLETO" hint="Composição do produto e todos os bônus" ratio="16/9" file="plano-completo.webp" /><p className="priceAnchor">De R$ 97,00, por apenas:</p><div className="completePrice">R$ 27,90</div><PlanList items={completeItems} /><a className="planButton completeButton" href={COMPLETE_CHECKOUT_URL || '#'} onClick={(e) => checkout(e, COMPLETE_CHECKOUT_URL, 'Plano Completo')}>QUERO O PLANO COMPLETO</a><p className="microcopy">Acesso imediato • Pagamento seguro</p></article>
+        <article className="completeCard reveal"><span className="featuredBadge">MAIS ESCOLHIDO</span><p className="planEyebrow">PAGAMENTO ÚNICO</p><h3>Plano Completo</h3><p>Para ter o aprimoramento completo com todos os bônus</p><ImagePlaceholder className="productImage" label="IMAGEM DO PLANO COMPLETO" hint="Composição do produto e todos os bônus" ratio="16/9" file="plano-completo.webp" /><p className="priceAnchor">De R$ 97,00, por apenas:</p><div className="completePrice">R$ 27,90</div><PlanList items={completeItems} /><a className="planButton completeButton" href={COMPLETE_CHECKOUT_URL}>QUERO O PLANO COMPLETO</a><p className="microcopy">Acesso imediato • Pagamento seguro</p></article>
       </section>
 
       <section className="section guarantee reveal"><div className="guaranteeSeal"><strong>7</strong><span>DIAS</span></div><div><h2>Garantia simples de 7 dias</h2><p>Você pode acessar o material e conferir se ele faz sentido para o seu aprimoramento. Se não for o que esperava, poderá solicitar o reembolso dentro do prazo de garantia.</p></div></section>
