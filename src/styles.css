@@ -80,7 +80,13 @@ h3 { line-height: 1.2; }
 .trackReverse { margin-left: 0; animation: carouselReverse 22s linear infinite; }
 @keyframes carouselForward { from { transform: translate3d(-33.333333%, 0, 0); } to { transform: translate3d(0, 0, 0); } }
 @keyframes carouselReverse { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-33.333333%, 0, 0); } }
-@media (max-width: 699px) { .deliverableViewport { transform: none; } }
+@media (max-width: 699px) {
+  .deliverableViewport { transform: none; }
+  .heroCopy { width: 100%; min-width: 0; }
+  .hero h1 { max-width: 100%; }
+  .hero h1 span { white-space: normal; }
+  .lead { width: 100%; }
+}
 
 /* Safari/iPhone pode falhar ao compor transforms extensos em loops contínuos.
    Aqui cada linha se move só dentro do conteúdo já repetido, sem quadro vazio. */

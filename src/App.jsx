@@ -21,14 +21,14 @@ const bonuses = [
 const deliverablePages = Array.from({ length: 9 }, (_, index) => `/assets/deliverable-pages/deliverable-${String(index + 1).padStart(2, '0')}.png`);
 
 const basicItems = [
-  ['yes', '+200 técnicas para servir como um garçom profissional'],
+  ['yes', '+200 técnicas para Garçons'],
   ['yes', 'Acesso digital imediato'], ['no', '30 roteiros práticos de serviço'],
   ['no', 'Guia de Memorização e Agilidade no Salão'], ['no', 'Checklists do Serviço Profissional'],
   ['no', 'Postura e Presença de um Garçom Profissional'], ['no', 'Certificado de Conclusão'],
 ];
 
 const completeItems = [
-  '+200 técnicas para servir como um garçom profissional', '30 roteiros práticos de serviço',
+  '+200 técnicas para Garçons', '30 roteiros práticos de serviço',
   'Guia de Memorização e Agilidade no Salão', 'Checklists do Serviço Profissional',
   'Postura e Presença de um Garçom Profissional', 'Certificado de Conclusão',
   'Acesso digital imediato', 'Pagamento único',
