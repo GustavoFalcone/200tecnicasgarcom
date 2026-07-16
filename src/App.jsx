@@ -66,7 +66,7 @@ function ImagePlaceholder({ label, hint, ratio = '4/3', file, className = '' }) 
     'bonus-02-checklists.webp': '/assets/bonus-02.png',
     'bonus-03-postura-presenca.webp': '/assets/bonus-03.png',
     'certificado-conclusao.webp': '/assets/bonus-04.png',
-    'plano-completo.webp': '/assets/plano-completo-oferta.png',
+    'plano-completo.webp': 'https://i.postimg.cc/sx6tWJy8/Chat-GPT-Image-16-de-jul-de-2026-16-57-24-removebg-preview.png',
     'selos-formas-pagamento.webp': '/assets/checkout-seguranca-opt.png',
   };
   const asset = assetBySlot[file];
@@ -102,7 +102,7 @@ function UpgradeModal({ onClose }) {
       <button className="upgradeClose" type="button" onClick={onClose} aria-label="Fechar oferta">×</button>
       <p className="upgradeEyebrow">OFERTA ESPECIAL</p><h2 id="upgrade-title">Leve o Plano Completo por R$ 17,90</h2>
       <p>Por apenas mais R$ 7,90, você desbloqueia tudo o que deixa o serviço mais organizado, elegante e seguro.</p>
-      <img src="/assets/plano-completo-oferta.png" alt="Plano Completo com técnicas e materiais complementares" />
+      <img src="https://i.postimg.cc/sx6tWJy8/Chat-GPT-Image-16-de-jul-de-2026-16-57-24-removebg-preview.png" alt="Plano Completo com técnicas e materiais complementares" />
       <p className="upgradeValueCopy">Você leva os 4 bônus que, juntos, normalmente custam <b>R$ 87,00</b> — além das 200 técnicas e dos roteiros práticos.</p>
       <ul><li>+200 técnicas visuais</li><li>30 roteiros práticos</li><li>4 bônus incluídos</li><li>Certificado de conclusão</li></ul>
       <strong>R$ 17,90</strong><a className="upgradeButton" href={UPGRADE_CHECKOUT_URL}>QUERO O PLANO COMPLETO</a>
@@ -123,8 +123,8 @@ export default function App() {
     <CountdownBar />
     <main>
       <section className="hero reveal">
-        <div className="heroCopy"><h1><span><em>+200 Técnicas</em> para Servir</span><span>como um Garçom Profissional</span></h1><p className="lead">Um material visual, direto e fácil de aplicar para garçons que querem servir, recolher e se movimentar com mais rapidez, elegância e segurança.</p></div>
-        <div className="heroMedia"><img className="heroImage" src="/assets/hero-garcom.webp" alt="Material com mais de 200 técnicas para servir como um garçom profissional" width="600" height="800" loading="eager" fetchPriority="high" /><CTA className="primaryPulse">ACESSAR AS TÉCNICAS</CTA><p className="microcopy">Acesso digital imediato • Pagamento único</p></div>
+        <div className="heroCopy"><h1><span><em>+200 Técnicas</em> para Garçons</span><span>servirem com mais agilidade e presença</span></h1><p className="lead">Um material visual, direto e fácil de aplicar para garçons que querem servir, recolher e se movimentar com mais rapidez, elegância e segurança.</p></div>
+        <div className="heroMedia"><img className="heroImage" src="https://i.postimg.cc/YSzgCLqK/Chat-GPT-Image-16-de-jul-de-2026-16-45-27.png" alt="Material com mais de 200 técnicas para servir como um garçom profissional" width="600" height="800" loading="eager" fetchPriority="high" /><CTA className="primaryPulse">ACESSAR AS TÉCNICAS</CTA><p className="microcopy">Acesso digital imediato • Pagamento único</p></div>
       </section>
 
       <section className="section reveal"><h2>Para quem é este material?</h2><div className="audienceGrid">{audienceCards.map(([title, text]) => <article className="audienceCard" key={title}><span className="check">✓</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div></section>
