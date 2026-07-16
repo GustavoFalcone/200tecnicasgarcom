@@ -5,10 +5,10 @@ const COMPLETE_CHECKOUT_URL = 'https://zuckpay.com.br/checkout/200-tecnicas-para
 const UPGRADE_CHECKOUT_URL = 'https://zuckpay.com.br/checkout/200-tecnicas-para-servir-como-um-garcom-profissional-plano-completo-1';
 
 const audienceCards = [
-  ['Garçons de restaurantes', 'Para quem quer aprimorar o serviço à mesa e trabalhar com mais fluidez.'],
-  ['Garçons de bares e hotéis', 'Para ganhar mais organização, segurança e presença em ambientes movimentados.'],
-  ['Garçons de eventos e buffets', 'Para servir e recolher com mais rapidez sem perder a elegância.'],
-  ['Quem já trabalha na área', 'Para aprender os detalhes que diferenciam um atendimento comum de um serviço profissional.'],
+  ['Garçons que estão começando', 'Para quem quer ganhar mais segurança e entender melhor como servir, carregar e recolher no dia a dia.'],
+  ['Quem ainda aprende no improviso', 'Para quem aprendeu observando outros garçons, mas sente que ainda faltam técnicas mais claras e organizadas.'],
+  ['Quem quer ganhar mais agilidade', 'Para quem deseja fazer menos idas e voltas, reduzir movimentos desnecessários e acompanhar melhor o ritmo do salão.'],
+  ['Quem quer passar mais presença', 'Para quem quer parar de parecer inseguro e se movimentar, servir e atender com mais firmeza diante dos clientes.'],
 ];
 
 const bonuses = [
