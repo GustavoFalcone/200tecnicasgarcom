@@ -100,12 +100,12 @@ function UpgradeModal({ onClose }) {
   return <div className="upgradeOverlay" role="presentation" onMouseDown={onClose}>
     <section className="upgradeModal" role="dialog" aria-modal="true" aria-labelledby="upgrade-title" onMouseDown={(event) => event.stopPropagation()}>
       <button className="upgradeClose" type="button" onClick={onClose} aria-label="Fechar oferta">×</button>
-      <p className="upgradeEyebrow">OFERTA ESPECIAL</p><h2 id="upgrade-title">Leve o Plano Completo por R$ 17,90</h2>
+      <p className="upgradeEyebrow">OFERTA ESPECIAL</p><h2 id="upgrade-title">Leve o Plano Completo por R$ 14,90</h2>
       <p>Por apenas mais R$ 7,90, você desbloqueia tudo o que deixa o serviço mais organizado, elegante e seguro.</p>
       <img src="https://i.postimg.cc/sx6tWJy8/Chat-GPT-Image-16-de-jul-de-2026-16-57-24-removebg-preview.png" alt="Plano Completo com técnicas e materiais complementares" />
       <p className="upgradeValueCopy">Você leva os 4 bônus que, juntos, normalmente custam <b>R$ 87,00</b> — além das 200 técnicas e dos roteiros práticos.</p>
       <ul><li>+200 técnicas visuais</li><li>30 roteiros práticos</li><li>4 bônus incluídos</li><li>Certificado de conclusão</li></ul>
-      <strong>R$ 17,90</strong><a className="upgradeButton" href={UPGRADE_CHECKOUT_URL}>QUERO O PLANO COMPLETO</a>
+      <strong>R$ 14,90</strong><a className="upgradeButton" href={UPGRADE_CHECKOUT_URL}>QUERO O PLANO COMPLETO</a>
       <a className="upgradeDecline" href={BASIC_CHECKOUT_URL}>Continuar apenas com o Plano Básico</a>
     </section>
   </div>;
@@ -135,7 +135,7 @@ export default function App() {
 
       <section className="priceSection" id="checkout"><div className="priceIntro reveal"><p className="eyebrow">ACESSO DIGITAL IMEDIATO</p><h2>Escolha seu acesso</h2><p>Comece pelo material principal ou leve o aprimoramento completo com todos os bônus.</p></div>
         <article className="basicCard reveal"><p className="planEyebrow">PAGAMENTO ÚNICO</p><h3>Plano Básico</h3><p>Para acessar apenas o material principal</p><div className="basicPrice">R$ 10,00</div><PlanList items={basicItems} basic /><button className="planButton basicButton" type="button" onClick={() => setShowUpgrade(true)}>QUERO APENAS O PLANO BÁSICO</button></article>
-        <article className="completeCard reveal"><span className="featuredBadge">MAIS ESCOLHIDO</span><p className="planEyebrow">PAGAMENTO ÚNICO</p><h3>Plano Completo</h3><p>Para ter o aprimoramento completo com todos os bônus</p><ImagePlaceholder className="productImage" label="IMAGEM DO PLANO COMPLETO" hint="Composição do produto e todos os bônus" ratio="16/9" file="plano-completo.webp" /><p className="priceAnchor">De R$ 97,00, por apenas:</p><div className="completePrice">R$ 27,90</div><PlanList items={completeItems} /><a className="planButton completeButton" href={COMPLETE_CHECKOUT_URL}>QUERO O PLANO COMPLETO</a><p className="microcopy">Acesso imediato • Pagamento seguro</p></article>
+        <article className="completeCard reveal"><span className="featuredBadge">MAIS ESCOLHIDO</span><p className="planEyebrow">PAGAMENTO ÚNICO</p><h3>Plano Completo</h3><p>Para ter o aprimoramento completo com todos os bônus</p><ImagePlaceholder className="productImage" label="IMAGEM DO PLANO COMPLETO" hint="Composição do produto e todos os bônus" ratio="16/9" file="plano-completo.webp" /><p className="priceAnchor">De R$ 97,00, por apenas:</p><div className="completePrice">R$ 19,90</div><PlanList items={completeItems} /><a className="planButton completeButton" href={COMPLETE_CHECKOUT_URL}>QUERO O PLANO COMPLETO</a><p className="microcopy">Acesso imediato • Pagamento seguro</p></article>
       </section>
 
       <section className="section guarantee reveal"><div className="guaranteeSeal"><strong>7</strong><span>DIAS</span></div><div><h2>Garantia simples de 7 dias</h2><p>Você pode acessar o material e conferir se ele faz sentido para o seu aprimoramento. Se não for o que esperava, poderá solicitar o reembolso dentro do prazo de garantia.</p></div></section>
