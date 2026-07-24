@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
 const BASIC_CHECKOUT_URL = 'https://zuckpay.com.br/checkout/200-tecnicas-para-servir-como-um-garcom-profissional-plano-basico';
-const COMPLETE_CHECKOUT_URL = 'https://zuckpay.com.br/checkout/200-tecnicas-para-servir-como-um-garcom-profissional-plano-completo';
-const UPGRADE_CHECKOUT_URL = 'https://zuckpay.com.br/checkout/200-tecnicas-para-servir-como-um-garcom-profissional-plano-completo-1';
+const COMPLETE_CHECKOUT_URL = 'https://zuckpay.com.br/checkout/200-tecnicas-para-garcons-plano-completo';
+const UPGRADE_CHECKOUT_URL = 'https://zuckpay.com.br/checkout/200-tecnicas-para-garcons-plano-completo-1';
 
 const audienceCards = [
   ['Garçons que estão começando', 'Para quem quer ganhar mais segurança e entender melhor como servir, carregar e recolher no dia a dia.'],
